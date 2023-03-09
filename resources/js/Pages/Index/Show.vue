@@ -1,14 +1,16 @@
 <template>
-    <MainLayout>
         <div>
-            Hey it's show
+            Hey it's show persistent
         </div>
-    </MainLayout>
-    
 </template>
 
 <script setup>
     import {Link} from '@inertiajs/inertia-vue3'
-    import MainLayout from '../../Layouts/MainLayout.vue'
+</script>
 
+<script>
+    import MainLayout from '../../Layouts/MainLayout.vue';
+    export default {
+        layout : MainLayout
+    }
 </script>
