@@ -31,5 +31,21 @@ module.exports = {
             },
         ],
         'vue/no-v-text-v-html-on-component': 'off',
+        'vue/html-indent': ['error', 4, {
+            'attribute': 1,
+            'baseIndent': 1,
+            'closeBracket': 0,
+            'alignAttributesVertically': true,
+            'ignores': [],
+        }],
     },
+    // disables indentation check in *.vue files !!!!
+    // 'overrides': [
+    //     {
+    //         'files': ['*.vue'],
+    //         'rules': {
+    //             'indent': 'off',
+    //         },
+    //     },
+    // ],
 }

@@ -1,8 +1,9 @@
 <template>
-  <Link rel="stylesheet" href="/">Go to Home</Link>&nbsp;
-  <Link rel="stylesheet" href="/show">Go to show</Link>
-  <div>Timer is {{ timer }}</div>
-  <slot>Default</slot>
+    <Link rel="stylesheet" href="/">Go to Home</Link>&nbsp;
+    <Link rel="stylesheet" href="/show">Go to show</Link>
+    <Link rel="stylesheet" href="/listings">Go to listings</Link>
+    <div>Timer is {{ timer }}</div>
+    <slot>Default</slot>
 </template>
 
 <script setup>
