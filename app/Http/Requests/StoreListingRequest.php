@@ -24,7 +24,21 @@ class StoreListingRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'beds' => 'required|integer|min:0|max:10',
+            'baths' => 'required|integer|min:0|max:10',
+            'area' => 'required|integer|min:10|max:1000',
+            'city' => 'required',
+            'code' => 'required',
+            'street' => 'required',
+            'street_nr' => 'required|integer',
+            'price' => 'required|integer|min:10|max:200000000',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'area.min' => 'area must be at least 10 square meter'
         ];
     }
 }

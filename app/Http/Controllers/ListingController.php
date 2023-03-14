@@ -6,8 +6,6 @@ use Exception;
 use App\Models\Listing;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
-use Illuminate\Validation\ValidationException;
-use Throwable;
 
 class ListingController extends Controller
 {
@@ -53,8 +51,6 @@ class ListingController extends Controller
         
         Listing::create($request->all());
         
-
-
         return redirect()->route('listings.index')->with('success', 'listing created Successfully !!');
     }
 
