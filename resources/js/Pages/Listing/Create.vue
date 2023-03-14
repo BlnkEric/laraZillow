@@ -49,10 +49,9 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
+import { useForm } from '@inertiajs/inertia-vue3';
 
-const form = reactive({
+const form = useForm({
     baths : 0,
     beds : 0,
     area : 0,
@@ -63,9 +62,8 @@ const form = reactive({
     price : 0,
 })
 
-const create = () => Inertia.post('/listings', form)
-</script>
-
+const create = () => form.post('/listings')
+</script> 
 
 <style scoped>
 label {

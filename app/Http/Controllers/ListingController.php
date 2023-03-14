@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Listing;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
+use Illuminate\Validation\ValidationException;
+use Throwable;
 
 class ListingController extends Controller
 {
@@ -39,7 +42,20 @@ class ListingController extends Controller
      */
     public function store(StoreListingRequest $request)
     {
-        dd($request);
+        // dd($request);
+        // try {
+        //     Listing::create($request->all());
+        // } catch (Throwable $exception) {
+        //     dd($exception->getMessage());
+        //     return $exception->getMessage();
+        //     return redirect()->back()->with('errors', $exception->getMessage());
+        // }
+        
+        Listing::create($request->all());
+        
+
+
+        return redirect()->route('listings.index')->with('success', 'listing created Successfully !!');
     }
 
     /**
