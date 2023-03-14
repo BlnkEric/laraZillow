@@ -3,22 +3,25 @@
     <Link rel="stylesheet" href="/show">Go to show</Link>
     <Link rel="stylesheet" href="/listings">Go to listings</Link>
     <div>Timer is {{ timer }}</div>
-    <div class="success" v-if="page.props.value.flash.success">
-        {{ page.props.value.flash.success }}
+    <div v-if="successFlash" class="success">
+        {{ successFlash }}
     </div>
     <slot>Default</slot>
 </template>
 
 <script setup>
 import {Link, usePage} from '@inertiajs/inertia-vue3'
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
 
 defineProps({
     errors: String,
 })
 
 // page.props.value.flash.success
-const page = usePage();
+const page = usePage()
+const successFlash = computed(
+    () => page.props.value.flash.success,
+)
 
 const timer = ref(0)
 setInterval(() => timer.value++, 1000)
