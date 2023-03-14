@@ -1,6 +1,16 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import MainLayout from '@/Layouts/MainLayout.vue'
+import Icon from '@/Pages/Components/Icon.vue'
+
+import { library, icon } from '@fortawesome/fontawesome-svg-core'
+import { faHatWizard, faCamera, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
+// const camera = icon({ prefix: 'fas', iconName: 'camera' })
+
+library.add(faCamera, faCheckCircle)
+library.add(faHatWizard)
 
 createInertiaApp({
     resolve: async (name) => {
@@ -13,6 +23,11 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .component('font-awesome-icon', FontAwesomeIcon)
+            .component('icon', Icon)
             .mount(el)
+        // app.component('FontAwesomeIcon', FontAwesomeIcon)
+
     },
 })
+
