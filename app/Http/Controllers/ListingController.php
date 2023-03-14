@@ -76,7 +76,10 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        //
+        return inertia(
+            'Listing/Edit',
+            ['listing' => $listing]
+        );
     }
 
     /**
@@ -88,7 +91,8 @@ class ListingController extends Controller
      */
     public function update(UpdateListingRequest $request, Listing $listing)
     {
-        //
+        $listing->update($request->all());
+        return redirect()->route('listings.index')->with('success', 'listing updated Successfully !!');
     }
 
     /**
@@ -99,6 +103,8 @@ class ListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
-        //
+        $listing->delete();
+        return redirect()->back()
+            ->with('success', 'Listing was deleted!');
     }
 }

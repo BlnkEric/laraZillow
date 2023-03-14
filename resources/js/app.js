@@ -3,10 +3,10 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import MainLayout from '@/Layouts/MainLayout.vue'
 import Icon from '@/Pages/Components/Icon.vue'
 
-import { library, icon } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard, faCamera, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
+import { ZiggyVue } from 'ziggy'
 // const camera = icon({ prefix: 'fas', iconName: 'camera' })
 
 library.add(faCamera, faCheckCircle)
@@ -23,6 +23,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue)
             .component('font-awesome-icon', FontAwesomeIcon)
             .component('icon', Icon)
             .mount(el)
