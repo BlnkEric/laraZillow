@@ -2,8 +2,8 @@
     <form @submit.prevent="create">
         <div class="grid grid-col-6 gap-4">
             <div class="col-span-2">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Beds</label>
-                <input v-model.number="form.beds" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Beds</label>
+                <input v-model.number="form.beds" type="text" class="input" />
                 <div v-if="form.errors.beds">
                     <span>{{ form.errors.beds }}</span>
                 </div>                
@@ -13,8 +13,8 @@
             </div>
 
             <div class="col-span-2">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Baths</label>
-                <input v-model.number="form.baths" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Baths</label>
+                <input v-model.number="form.baths" type="text" class="input" />
                 <div v-if="form.errors.baths">
                     <span>{{ form.errors.baths }}</span>
                 </div>
@@ -24,8 +24,8 @@
             </div>
 
             <div class="col-span-2">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Area</label>
-                <input v-model.number="form.area" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Area</label>
+                <input v-model.number="form.area" type="text" class="input" />
                 <div v-if="form.errors.area">
                     <span>{{ form.errors.area }}</span>
                 </div>
@@ -38,8 +38,8 @@
             </div>
 
             <div class="col-span-4">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">City</label>
-                <input v-model="form.city" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">City</label>
+                <input v-model="form.city" type="text" class="input" />
                 <div v-if="form.errors.city">
                     <span>{{ form.errors.city }}</span>
                 </div>
@@ -49,8 +49,8 @@
             </div>
 
             <div class="col-span-2">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Post Code</label>
-                <input v-model="form.code" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Post Code</label>
+                <input v-model="form.code" type="text" class="input" />
                 <div v-if="form.errors.code">
                     <span>{{ form.errors.code }}</span>
                 </div>
@@ -60,8 +60,8 @@
             </div>
 
             <div class="col-span-4">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Street</label>
-                <input v-model="form.street" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Street</label>
+                <input v-model="form.street" type="text" class="input" />
                 <div v-if="form.errors.street">
                     <span>{{ form.errors.street }}</span>
                 </div>
@@ -71,8 +71,8 @@
             </div>
 
             <div class="col-span-2">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Street Nr</label>
-                <input v-model.number="form.street_nr" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Street Nr</label>
+                <input v-model.number="form.street_nr" type="text" class="input" />
                 <div v-if="form.errors.street_nr">
                     <span>{{ form.errors.street_nr }}</span>
                 </div>
@@ -82,8 +82,8 @@
             </div>
 
             <div class="col-span-6">
-                <label class="block text-gray-600 dark:text-gray-400 font-medium">Price</label>
-                <input v-model.number="form.price" type="text" class="block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800" />
+                <label class="label">Price</label>
+                <input v-model.number="form.price" type="text" class="input" />
                 <div v-if="form.errors.price">
                     <span>{{ form.errors.price }}</span>
                 </div>
@@ -94,7 +94,7 @@
             </div>
 
             <div class="col-span-6">
-                <button type="submit" class="bg-indigo-600 dark:bg-indigo-400 hover:bg-indigo-500 text-white font-medium p-2 rounded-md" @click="triggerValidInputs">Create</button>
+                <button type="submit" class="btn-primary" @click="triggerValidInputs">Create</button>
             </div>
         </div>
     </form>

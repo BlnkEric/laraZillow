@@ -9,7 +9,7 @@
                     <Link rel="stylesheet" :href="route('listings.index')">BlnkEric</Link>
                 </div>
                 <div>
-                    <Link rel="stylesheet" :href="route('listings.create')" class="bg-indigo-600 dark:bg-indigo-400 hover:bg-indigo-500 text-white font-medium p-2 rounded-md">Add New Listing</Link>
+                    <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary">Add New Listing</Link>
                 </div>
             </nav>
         </div>
