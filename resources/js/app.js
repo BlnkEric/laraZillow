@@ -7,12 +7,18 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard, faCamera, faCheckCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ZiggyVue } from 'ziggy'
+import { InertiaProgress } from '@inertiajs/progress'
 // const camera = icon({ prefix: 'fas', iconName: 'camera' })
 import '../css/app.css'
 
 library.add(faCamera, faCheckCircle, faSpinner)
 library.add(faHatWizard)
-
+InertiaProgress.init({
+    delay: 0,
+    color: '#29d',
+    includeCSS: true,
+    showSpinner: true,
+})
 createInertiaApp({
     resolve: async (name) => {
         const pages = import.meta.glob('./Pages/**/*.vue')
