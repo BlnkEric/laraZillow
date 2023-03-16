@@ -34,7 +34,6 @@ defineProps({
 
 .listings div {
     flex: 0 0 33%;
-    background-color: rgb(0, 0, 0);
 }
 
 

@@ -4,12 +4,13 @@ import MainLayout from '@/Layouts/MainLayout.vue'
 import Icon from '@/Pages/Components/Icon.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHatWizard, faCamera, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { faHatWizard, faCamera, faCheckCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { ZiggyVue } from 'ziggy'
 // const camera = icon({ prefix: 'fas', iconName: 'camera' })
+import '../css/app.css'
 
-library.add(faCamera, faCheckCircle)
+library.add(faCamera, faCheckCircle, faSpinner)
 library.add(faHatWizard)
 
 createInertiaApp({

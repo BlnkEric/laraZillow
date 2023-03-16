@@ -8,7 +8,7 @@
                     <span>{{ form.errors.beds }}</span>
                 </div>                
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -19,7 +19,7 @@
                     <span>{{ form.errors.baths }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -30,7 +30,7 @@
                     <span>{{ form.errors.area }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                     <!-- <font-awesome-icon icon="fa-hat-wizard" /> -->
                     <!-- <font-awesome-icon icon="fa-solid fa-camera" /> -->
                     <!-- <icon style="height: 20px; width: 20px;" /> -->
@@ -44,7 +44,7 @@
                     <span>{{ form.errors.city }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
                     <span>{{ form.errors.code }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -66,7 +66,7 @@
                     <span>{{ form.errors.street }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -77,7 +77,7 @@
                     <span>{{ form.errors.street_nr }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -88,7 +88,8 @@
                     <span>{{ form.errors.price }}</span>
                 </div>
                 <div v-else class="afterValidate">
-                    <font-awesome-icon class="validated" icon="fa-solid fa-check-circle" />
+                    <!-- <font-awesome-icon class="validated" :icon="dynamicIcon" /> -->
+                    <font-awesome-icon class="validated" icon="fa-solid fa-spinner" />
                 </div>
             </div>
 
@@ -101,6 +102,7 @@
 
 <script setup>
 import { useForm } from '@inertiajs/inertia-vue3'
+// import { reactive, ref } from 'vue';
 
 const form = useForm({
     baths : 0,
@@ -113,6 +115,21 @@ const form = useForm({
     price : 0,
 })
 
+// const dynamicIcon = reactive({
+//     'fa-solid': true,
+//     'fa-spinner': true,
+//     'fa-check-circle': false,
+// })
+
+// const aaa = ref(0)
+
+// setInterval(() => {
+//     aaa.value++
+//     if(aaa.value === 15) {
+//         dynamicIcon['fa-check-circle'] = true
+//         dynamicIcon['fa-spinner'] = false
+//     }
+// }, 1000)
 
 // defineProps({
 //     display: {
@@ -160,7 +177,6 @@ label {
 
 form div div {
   padding: 2px;
-  /* margin: 10px 0 10px 0; */
   display: flex;
 }
 
