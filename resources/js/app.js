@@ -1,7 +1,7 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import MainLayout from '@/Layouts/MainLayout.vue'
-import Icon from '@/Pages/Components/Icon.vue'
+import Icon from '@/Components/Icon.vue'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faHatWizard, faCamera, faCheckCircle, faSpinner } from '@fortawesome/free-solid-svg-icons'

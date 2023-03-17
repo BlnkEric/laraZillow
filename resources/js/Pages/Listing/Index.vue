@@ -20,10 +20,10 @@
 
 <script setup>
 import { Link } from '@inertiajs/inertia-vue3'
-import ListingAddress from '../Components/listingAddress.vue'
-import ListingSpace from '../Components/ListingSpace.vue'
-import Price from '../Components/Price.vue'
-import Box from '../Components/UI/Box.vue'
+import ListingAddress from '../../Components/listingAddress.vue'
+import ListingSpace from '../../Components/ListingSpace.vue'
+import Price from '../../Components/Price.vue'
+import Box from '../../Components/UI/Box.vue'
 
 defineProps({
     listings : Array,
