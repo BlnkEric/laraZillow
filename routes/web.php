@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\userAccountController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 
@@ -25,3 +26,5 @@ Route::resource('listings', ListingController::class);
 Route::get('login', [AuthController::class, 'create'])->name('login');
 Route::post('login', [AuthController::class, 'store'])->name('login.store');
 Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
+
+Route::resource('user-account', userAccountController::class);
