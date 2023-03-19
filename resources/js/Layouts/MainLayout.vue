@@ -7,13 +7,13 @@
                 </div>
 
                 <div class="flex gap-3 items-end">
-                    <Link class="btn-primary" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
+                    <Link class="btn-primary max-[768px]:text-sm" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
                     <div v-if="user" class="flex gap-2 items-end">
                         <div class="btn-primary max-[768px]:text-sm">
                             {{ user.name }}
                         </div>
-                        <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary">+ New Listing</Link>
-                        <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary">Logout</Link>
+                        <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary max-[768px]:text-sm">+ New Listing</Link>
+                        <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary max-[768px]:text-sm">Logout</Link>
                     </div>
                     <div v-else class="flex items-end gap-2">
                         <Link rel="stylesheet" :href="route('user-account.create')" class="btn-primary">Register</Link>

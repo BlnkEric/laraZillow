@@ -12,10 +12,19 @@
     .btn-primary{
         @apply bg-indigo-600 dark:bg-indigo-400 hover:bg-indigo-500 text-white font-medium p-2 rounded-md max-h-10
     }
+    .btn-normal{
+        @apply bg-gray-800 dark:bg-gray-700 hover:bg-indigo-500 text-white font-medium p-2 rounded-md max-h-10
+    }
     .errorContainer{
         @apply flex items-center w-full
     }
     .spanError{
         @apply border-2 border-red-700 bg-red-300 rounded-md p-0.5 m-auto w-full text-center text-red-900
+    }
+    .filter-input-l{
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-500 border border-gray-300 dark:border-gray-600 rounded-md rounded-r-none text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800
+    }
+    .filter-input-r{
+        @apply placeholder:text-gray-400 dark:placeholder:text-gray-500 border border-l-0 border-gray-300 dark:border-gray-600 rounded-md rounded-l-none text-sm font-medium text-gray-600 dark:text-gray-400 dark:bg-gray-800
     }
 }
