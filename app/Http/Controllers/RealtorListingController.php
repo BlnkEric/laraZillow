@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class RealtorListingController extends Controller
 {
+    public function __construct()
+    {
+        //alternativ way to define policies if you already using resource controller !!
+        $this->authorizeResource(Listing::class, 'listing');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -48,7 +55,7 @@ class RealtorListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Listing $listing)
     {
         //
     }
@@ -59,7 +66,7 @@ class RealtorListingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Listing $listing)
     {
         //
     }
@@ -79,11 +86,13 @@ class RealtorListingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Listing  $listing
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Listing $listing)
     {
-        //
+        $listing->deleteOrFail();
+        return redirect()->back()
+            ->with('success', 'Listing was deleted!');
     }
 }
