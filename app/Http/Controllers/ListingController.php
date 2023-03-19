@@ -34,32 +34,7 @@ class ListingController extends Controller
             'Listing/Index',
             [
                 'filters' => $filters,
-                'listings' => Listing::orderByDesc('created_at')
-                ->when(
-                    $request['priceFrom'] ?? false,
-                    fn ($query, $value) => $query->where('price', '>=', $value)
-                )
-                ->when(
-                    $request['priceTo'] ?? false,
-                    fn ($query, $value) => $query->where('price', '<=', $value)
-                )
-                ->when(
-                    $request['beds'] ?? false,
-                    fn ($query, $value) => $query->where('beds', (int)$value < 6 ? '=' : '>=', $value)
-                )
-                ->when(
-                    $request['baths'] ?? false,
-                    fn ($query, $value) => $query->where('baths', (int)$value < 6 ? '=' : '>=', $value)
-                )        
-                ->when(
-                    $request['areaFrom'] ?? false,
-                    fn ($query, $value) => $query->where('area', '>=', $value)
-                )
-                ->when(
-                    $request['areaTo'] ?? false,
-                    fn ($query, $value) => $query->where('area', '<=', $value)
-                )
-                ->paginate(10)->withQueryString()
+                'listings' => Listing::mostRecent()->filter($filters)->paginate(10)->withQueryString()
             ]
         );
     }
