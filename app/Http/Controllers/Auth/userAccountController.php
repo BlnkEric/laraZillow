@@ -43,9 +43,7 @@ class userAccountController extends Controller
      */
     public function store(StoreUserAccountRequest $request)
     {
-        $user = User::make($request->all());
-        $user->password = Hash::make($user->password);
-        $user->save();
+        $user = User::create($request->all());
         Auth::login($user);
 
         return redirect()->route('listings.index')->with('success', 'Account Created Successfully!');

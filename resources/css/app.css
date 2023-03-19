@@ -10,7 +10,7 @@
         @apply block w-full rounded-md shadow-sm border border-gray-400 dark:border-gray-600 text-gray-800
     }
     .btn-primary{
-        @apply bg-indigo-600 dark:bg-indigo-400 hover:bg-indigo-500 text-white font-medium p-2 rounded-md
+        @apply bg-indigo-600 dark:bg-indigo-400 hover:bg-indigo-500 text-white font-medium p-2 rounded-md max-h-10
     }
     .errorContainer{
         @apply flex items-center w-full

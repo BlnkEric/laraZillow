@@ -33,7 +33,10 @@
                 <input id="password_confirmation" v-model="form.password_confirmation" type="password" class="input" />
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn-primary" @click="triggerValidInputs">Create Account</button>
+                <button type="submit" class="btn-primary w-full" @click="triggerValidInputs">Create Account</button>
+            </div>
+            <div class="mt-2 text-center text-gray-500">
+                <Link :href="route('login')">Already have an account? cleck here</Link>
             </div>
         </form>
     </div>
@@ -41,7 +44,7 @@
 
 <script setup>
 import { useValidationPass } from '@/Composables/useValidationPass'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm, Link } from '@inertiajs/inertia-vue3'
 
 const form = useForm({
     name : null,

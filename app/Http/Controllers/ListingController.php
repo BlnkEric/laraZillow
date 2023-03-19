@@ -6,13 +6,17 @@ use Exception;
 use App\Models\Listing;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
 
     public function __construct()
     {
+        //alternativ way to define policies if you already using resource controller !!
         $this->middleware('auth')->except(['index', 'show']);
+        $this->authorizeResource(Listing::class, 'listing');
+
     }
     /**
      * Display a listing of the resource.
@@ -21,6 +25,7 @@ class ListingController extends Controller
      */
     public function index()
     {
+        // dd(Auth::user());
         return inertia(
             'Listing/Index',
             ['listings' => Listing::all()]
@@ -34,6 +39,9 @@ class ListingController extends Controller
      */
     public function create()
     {
+        //policy example for create
+        // $this->authorize('create', Listing::class);
+
         return inertia('Listing/Create');
     }
 
@@ -54,7 +62,7 @@ class ListingController extends Controller
         //     return redirect()->back()->with('errors', $exception->getMessage());
         // }
         
-        Listing::create($request->all());
+        $request->user()->listings()->create($request->all());
         
         return redirect()->route('listings.index')->with('success', 'listing created Successfully !!');
     }
@@ -67,6 +75,17 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
+        //first way to consraint actions - policy - return boolean or a response
+        // Auth::user()->cannot('view', $listing);
+
+        //to do something with it 
+        // if (Auth::user()->cannot('view', $listing);) {
+        //     abort(403);
+        // }
+
+        //second way and more convinient !!
+        // $this->authorize('view', $listing);
+
         return inertia(
             'Listing/Show',
             ['listing' => $listing]

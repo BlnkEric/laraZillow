@@ -6,13 +6,13 @@
                     <Link class="text-5xl" rel="stylesheet" :href="route('listings.index')">BlnkEric</Link>
                 </div>
 
-                <div class="flex gap-3">
+                <div class="flex gap-3 items-end">
                     <Link class="btn-primary" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
                     <div v-if="user" class="flex gap-2 items-end">
-                        <div class="btn-primary">
+                        <div class="btn-primary max-[768px]:text-sm">
                             {{ user.name }}
                         </div>
-                        <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary">Add New Listing</Link>
+                        <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary">+ New Listing</Link>
                         <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary">Logout</Link>
                     </div>
                     <div v-else class="flex items-end gap-2">

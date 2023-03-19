@@ -22,7 +22,10 @@
                 </div> -->
             </div>
             <div class="mt-2">
-                <button type="submit" class="btn-primary" @click="triggerValidInputs">Login</button>
+                <button type="submit" class="btn-primary w-full" @click="triggerValidInputs">Login</button>
+            </div>
+            <div class="mt-2 text-center text-gray-500">
+                <Link :href="route('user-account.create')">Need an account? cleck here</Link>
             </div>
         </form>
     </div>
@@ -30,7 +33,7 @@
 
 <script setup>
 import { useValidationPass } from '@/Composables/useValidationPass'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { useForm, Link } from '@inertiajs/inertia-vue3'
 
 const form = useForm({
     email : null,
