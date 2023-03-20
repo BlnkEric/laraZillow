@@ -10,7 +10,9 @@
                     <Link class="btn-primary max-[768px]:text-sm" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
                     <div v-if="user" class="flex gap-2 items-end">
                         <div class="btn-primary max-[768px]:text-sm">
-                            {{ user.name }}
+                            <Link :href="route('realtor.listings.index')">
+                                {{ user.name }}
+                            </Link>
                         </div>
                         <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary max-[768px]:text-sm">+ New Listing</Link>
                         <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary max-[768px]:text-sm">Logout</Link>

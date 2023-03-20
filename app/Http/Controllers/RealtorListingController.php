@@ -11,7 +11,7 @@ class RealtorListingController extends Controller
     public function __construct()
     {
         //alternativ way to define policies if you already using resource controller !!
-        $this->authorizeResource(Listing::class, 'listing');
+        // $this->authorizeResource(Listing::class, 'listing');
     }
 
     /**
@@ -19,11 +19,15 @@ class RealtorListingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = [
+            'deleted' => $request->boolean('deleted'),
+        ];
+
         return inertia(
             'Realtor/Index', [
-            'listings' => Auth::user()->listings,
+            'listings' => Auth::user()->listings()->mostRecent()->filter($filters)->get(),
             ]
         );
     }

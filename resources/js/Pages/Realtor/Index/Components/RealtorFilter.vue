@@ -12,13 +12,13 @@
 <script setup>
 import {reactive, watch} from 'vue'
 import {Inertia} from '@inertiajs/inertia'
-
+import {debounce} from 'lodash'
 const filterForm = reactive({
     deleted: false,
 })
 
 //for one singel property or watching one item changes
-watch(filterForm, () => 
+watch(filterForm, debounce(() => 
     // console.log(newValue, OldValue),
     Inertia.get(
         route('realtor.listings.index'),
@@ -27,7 +27,7 @@ watch(filterForm, () =>
             preserveState: true,
             preserveScroll: true,
         },
-    ),
+    ), 1000),
 )
 //if we got more than one thing we have to use an array
 // watch([() => filterForm.deleted, () => reactiveOrRefOrComputed.somethingElse], (newValue, OldValue) => 
