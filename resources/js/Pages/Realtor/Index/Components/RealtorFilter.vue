@@ -1,9 +1,18 @@
 <template>
     <form action="">
-        <div class="my-5 flex flex-wrap gap-2">
+        <div class="my-5 flex flex-wrap gap-5">
             <div class="flex flex-nowrap items-center gap-2">
                 <input id="deleted" v-model="filterForm.deleted" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                 <label for="deleted">Deleted</label>
+            </div>
+            <div>
+                <select id="" name="" class="filter-input-l w-24">
+                    <option value="">Added</option>
+                    <option value="">Pride</option>
+                </select>
+                <select id="" name="" class="filter-input-r w-32">
+                    <option value="">---</option>
+                </select>
             </div>
         </div>
     </form>

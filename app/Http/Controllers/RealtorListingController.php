@@ -21,13 +21,21 @@ class RealtorListingController extends Controller
      */
     public function index(Request $request)
     {
+        // ... three dots : just unpack all elements of following array and add them to the parent array !? yes that
+        // it's like merge !
         $filters = [
             'deleted' => $request->boolean('deleted'),
+            ... $request->only(['by', 'order'])
         ];
 
+        // as we add sort by and order we can comment most recent query scope !!
         return inertia(
             'Realtor/Index', [
-            'listings' => Auth::user()->listings()->mostRecent()->filter($filters)->get(),
+            'listings' => Auth::user()
+            ->listings()
+            // ->mostRecent()
+            ->filter($filters)
+            ->get(),
             ]
         );
     }
