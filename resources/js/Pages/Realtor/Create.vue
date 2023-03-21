@@ -128,7 +128,7 @@ const form = useForm({
 const { validationPass } = useValidationPass(form)
 
 // eslint-disable-next-line no-undef
-const create = () => form.post(route('listings.store'))
+const create = () => form.post(route('realtor.listings.store'))
 </script> 
 
 <script>

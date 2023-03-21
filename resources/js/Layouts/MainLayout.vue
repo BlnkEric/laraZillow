@@ -14,7 +14,7 @@
                                 {{ user.name }}
                             </Link>
                         </div>
-                        <Link rel="stylesheet" :href="route('listings.create')" class="btn-primary max-[768px]:text-sm">+ New Listing</Link>
+                        <Link rel="stylesheet" :href="route('realtor.listings.create')" class="btn-primary max-[768px]:text-sm">+ New Listing</Link>
                         <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary max-[768px]:text-sm">Logout</Link>
                     </div>
                     <div v-else class="flex items-end gap-2">

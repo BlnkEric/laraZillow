@@ -108,7 +108,7 @@ const form = useForm({
 const { validationPass } = useValidationPass(form)
 
 // eslint-disable-next-line no-undef
-const update = () => form.put(route('listings.update', {listing: props.listing.id}))
+const update = () => form.put(route('realtor.listings.update', {listing: props.listing.id}))
 </script>
   
 <script>

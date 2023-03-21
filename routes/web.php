@@ -22,7 +22,7 @@ use App\Http\Controllers\RealtorListingController;
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/show', [IndexController::class, 'show']);
 
-Route::resource('listings', ListingController::class)->except(['destroy']);
+Route::resource('listings', ListingController::class)->only(['index', 'show']);
 
 Route::get('login', [AuthController::class, 'create'])->name('login');
 Route::post('login', [AuthController::class, 'store'])->name('login.store');
@@ -31,5 +31,5 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
 Route::resource('user-account', userAccountController::class);
 
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function () {
-    Route::resource('listings', RealtorListingController::class)->only(['index', 'destroy']);
+    Route::resource('listings', RealtorListingController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy']);
 });

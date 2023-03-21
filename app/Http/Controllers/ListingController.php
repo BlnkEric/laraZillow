@@ -40,41 +40,6 @@ class ListingController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //policy example for create
-        // $this->authorize('create', Listing::class);
-
-        return inertia('Listing/Create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreListingRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreListingRequest $request)
-    {
-        // dd($request);
-        // try {
-        //     Listing::create($request->all());
-        // } catch (Throwable $exception) {
-        //     dd($exception->getMessage());
-        //     return $exception->getMessage();
-        //     return redirect()->back()->with('errors', $exception->getMessage());
-        // }
-        
-        $request->user()->listings()->create($request->all());
-        
-        return redirect()->route('listings.index')->with('success', 'listing created Successfully !!');
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Listing  $listing
@@ -99,30 +64,4 @@ class ListingController extends Controller
         );
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Listing  $listing
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Listing $listing)
-    {
-        return inertia(
-            'Listing/Edit',
-            ['listing' => $listing]
-        );
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateListingRequest  $request
-     * @param  \App\Models\Listing  $listing
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateListingRequest $request, Listing $listing)
-    {
-        $listing->update($request->all());
-        return redirect()->route('listings.index')->with('success', 'listing updated Successfully !!');
-    }
 }
