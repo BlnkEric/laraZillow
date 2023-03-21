@@ -31,6 +31,8 @@ class RealtorListingController extends Controller
         // as we add sort by and order we can comment most recent query scope !!
         return inertia(
             'Realtor/Index', [
+            // 'deleted' => $request->boolean('deleted'),
+            'filters' => $filters,
             'listings' => Auth::user()
             ->listings()
             // ->mostRecent()

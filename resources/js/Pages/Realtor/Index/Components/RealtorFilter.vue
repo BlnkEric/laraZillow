@@ -6,12 +6,14 @@
                 <label for="deleted">Deleted</label>
             </div>
             <div>
-                <select id="" name="" class="filter-input-l w-24">
-                    <option value="">Added</option>
-                    <option value="">Pride</option>
+                <select id="" v-model="filterForm.by" name="" class="filter-input-l w-24">
+                    <option value="created_at">Added</option>
+                    <option value="price">Price</option>
                 </select>
-                <select id="" name="" class="filter-input-r w-32">
-                    <option value="">---</option>
+                <select id="" v-model="filterForm.order" name="" class="filter-input-r w-32">
+                    <option v-for="option in sortOptions" :key="option.value" :value="option.value">
+                        {{ option.label }}
+                    </option>
                 </select>
             </div>
         </div>
@@ -19,11 +21,43 @@
 </template>
 
 <script setup>
-import {reactive, watch} from 'vue'
+import {reactive, watch, computed} from 'vue'
 import {Inertia} from '@inertiajs/inertia'
 import {debounce} from 'lodash'
+
+const props = defineProps({
+    filters: Object,
+})
+
+const sortLabels = {
+    created_at: [
+        {
+            label: 'Latest',
+            value: 'desc',
+        },
+        {
+            label: 'Oldest',
+            value: 'asc',
+        },
+    ],
+    price: [
+        {
+            label: 'Cheapest',
+            value: 'asc',
+        }, 
+        {
+            label: 'Pricey',
+            value: 'desc',
+        },
+    ],
+}
+
+const sortOptions = computed(() => sortLabels[filterForm.by])
+
 const filterForm = reactive({
-    deleted: false,
+    deleted: props.filters.deleted ?? false, 
+    by: props.filters.by ?? 'created_at',
+    order: props.filters.order ?? 'desc',
 })
 
 //for one singel property or watching one item changes
