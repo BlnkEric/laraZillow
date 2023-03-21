@@ -39,8 +39,8 @@ class RealtorListingImageController extends Controller
      */
     public function store(Listing $listing, Request $request)
     {
-        if($request->has('files')) {
-            foreach ($request->file('files') as $key => $file) {
+        if($request->has('images')) {
+            foreach ($request->file('images') as $key => $file) {
                 $path = $file->store('images', 'public');
 
                 $listing->images()->save(new ListingImage([
