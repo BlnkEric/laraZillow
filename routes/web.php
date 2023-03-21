@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RealtorListingController;
+use App\Http\Controllers\RealtorListingImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +32,12 @@ Route::delete('logout', [AuthController::class, 'destroy'])->name('logout');
 Route::resource('user-account', userAccountController::class);
 
 Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function () {
+    Route::resource('listings.image', RealtorListingImageController::class)->only(['create', 'store']);
+
     Route::put('listings/{listing}/restore', [RealtorListingController::class, 'restore'])
     ->name('listings.restore')
     ->withTrashed();
-    
+
     Route::resource('listings', RealtorListingController::class)
     ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
     ->withTrashed();

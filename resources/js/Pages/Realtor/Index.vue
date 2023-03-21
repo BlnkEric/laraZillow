@@ -13,12 +13,17 @@
                     </div>
                     <ListingAddress :listing="listing" class="text-gray-500" />
                 </div>
-                <div class="flex gap-1 items-center text-gray-600 dark:text-gray-300">
-                    <a :href="route('listings.show', {listing: listing.id})" target="_blank" class="btn-outline text-xs font-medium">Preview</a>
-                    <Link :href="route('realtor.listings.edit', {listing: listing.id})" class="btn-outline text-xs font-medium">Edit</Link>
-                    <Link v-if="!listing.deleted_at" as="button" method="delete" :href="route('realtor.listings.destroy', {listing: listing.id})" class="btn-outline text-xs font-medium">Delete</Link>
-                    <Link v-else as="button" method="put" :href="route('realtor.listings.restore', {listing: listing.id})" class="btn-outline text-xs font-medium">Reset</Link>
-                </div>
+                <section>
+                    <div class="flex gap-1 items-center text-gray-600 dark:text-gray-300">
+                        <a :href="route('listings.show', {listing: listing.id})" target="_blank" class="btn-outline text-xs font-medium">Preview</a>
+                        <Link :href="route('realtor.listings.edit', {listing: listing.id})" class="btn-outline text-xs font-medium">Edit</Link>
+                        <Link v-if="!listing.deleted_at" as="button" method="delete" :href="route('realtor.listings.destroy', {listing: listing.id})" class="btn-outline text-xs font-medium">Delete</Link>
+                        <Link v-else as="button" method="put" :href="route('realtor.listings.restore', {listing: listing.id})" class="btn-outline text-xs font-medium">Reset</Link>
+                    </div>
+                    <div>
+                        <Link :href="route('realtor.listings.image.create', {listing: listing.id})" class="block w-full btn-outline text-xs text-center font-medium mt-1">Images</Link>
+                    </div>
+                </section>
             </div>
         </Box>
     </section>
