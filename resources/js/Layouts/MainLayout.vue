@@ -7,15 +7,15 @@
                 </div>
 
                 <div class="flex gap-3 items-end">
-                    <Link class="btn-primary max-[768px]:text-sm" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
+                    <Link class="btn-primary max-[768px]:text-sm max-[560px]:text-xs" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
                     <div v-if="user" class="flex gap-2 items-end">
-                        <div class="btn-primary max-[768px]:text-sm">
+                        <div class="btn-primary max-[768px]:text-sm max-[560px]:text-xs">
                             <Link :href="route('realtor.listings.index')">
                                 {{ user.name }}
                             </Link>
                         </div>
-                        <Link rel="stylesheet" :href="route('realtor.listings.create')" class="btn-primary max-[768px]:text-sm">+ New Listing</Link>
-                        <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary max-[768px]:text-sm">Logout</Link>
+                        <Link rel="stylesheet" :href="route('realtor.listings.create')" class="btn-primary max-[768px]:text-sm max-[560px]:text-xs">+ New Listing</Link>
+                        <Link rel="stylesheet" :href="route('logout')" method="delete" as="button" class="btn-primary max-[768px]:text-sm max-[560px]:text-xs">Logout</Link>
                     </div>
                     <div v-else class="flex items-end gap-2">
                         <Link rel="stylesheet" :href="route('user-account.create')" class="btn-primary">Register</Link>

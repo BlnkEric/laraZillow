@@ -14,6 +14,16 @@
             </section>
         </form>
     </Box>
+    <Box class="m-5">
+        <template #header>
+            Current Listing Images
+        </template>
+        <section class="mt-4 grid grid-cols-3 gap-4 place-items-center">
+            <div v-for="image in listing.images" :key="image.id">
+                <img :src="image.src" alt="jesus" class="rounded-md" />
+            </div>
+        </section>
+    </Box>
 </template>
 
 <script setup>
