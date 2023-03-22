@@ -34,6 +34,10 @@ class Listing extends Model
             'by_user_id');
     }
 
+    public function offers(): HasMany {
+        return $this->hasMany(Offer::class, 'listing_id');
+    }
+
     public function images(): HasMany {
         return $this->hasMany(ListingImage::class);
     }
