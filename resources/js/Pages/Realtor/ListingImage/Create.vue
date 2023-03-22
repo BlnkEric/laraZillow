@@ -18,9 +18,20 @@
         <template #header>
             Current Listing Images
         </template>
-        <section class="mt-4 grid grid-cols-3 gap-4 place-items-center">
-            <div v-for="image in listing.images" :key="image.id">
+        <section v-if="!listing.images.length" class="p-10 w-full text-center font-medium text-gray-500">
+            No images Yet
+        </section>
+        <section v-else class="mt-4 grid grid-cols-3 gap-4 place-items-end">
+            <div v-for="image in listing.images" :key="image.id" class="flex flex-col justify-between">
                 <img :src="image.src" alt="jesus" class="rounded-md" />
+                <Link
+                    :href="route('realtor.listings.image.destroy', {listing: props.listing.id , image: image.id})"
+                    method="delete"
+                    as="button"
+                    class="btn-outline mt-1 text-sm font-semibold"
+                >
+                    Delete
+                </Link>
             </div>
         </section>
     </Box>
@@ -28,7 +39,7 @@
 
 <script setup>
 import Box from '@/Components/UI/Box.vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { Link, useForm } from '@inertiajs/inertia-vue3'
 import { computed } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import { Nprogress } from 'nprogress'
