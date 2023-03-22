@@ -13,6 +13,10 @@
                 <button type="reset" class="btn-outline" @click="reset">Reset</button>
             </section>
         </form>
+
+        <div v-if="imageErrors.length" class="mt-2 errorContainer">
+            <span v-for="(error, index) in imageErrors" :key="index" class="spanError">{{ error }}</span>
+        </div>
     </Box>
     <Box class="m-5">
         <template #header>
@@ -58,13 +62,14 @@ const imageForm = useForm({
     images: [],
 })
 
+const imageErrors = computed(() => Object.values(imageForm.errors))
+
 const canUpload = computed(() => imageForm.images.length)
 
 const upload = () => {
     imageForm.post(route('realtor.listings.image.store', { listing: props.listing.id})),
     {
         onSuccess: imageForm.reset('images'),
-
     }
 }
 

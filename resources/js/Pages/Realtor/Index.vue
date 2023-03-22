@@ -21,7 +21,12 @@
                         <Link v-else as="button" method="put" :href="route('realtor.listings.restore', {listing: listing.id})" class="btn-outline text-xs font-medium">Reset</Link>
                     </div>
                     <div>
-                        <Link :href="route('realtor.listings.image.create', {listing: listing.id})" class="block w-full btn-outline text-xs text-center font-medium mt-1">Images</Link>
+                        <Link
+                            :href="route('realtor.listings.image.create', {listing: listing.id})" 
+                            class="block w-full btn-outline text-xs text-center font-medium mt-1"
+                        >
+                            Images ({{ listing.images_count }})
+                        </Link>
                     </div>
                 </section>
             </div>
