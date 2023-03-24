@@ -4,7 +4,7 @@
             <div v-if="!listing.images.length" class="w-full text-center font-medium text-gray-500">
                 No images Yet
             </div>
-            <div v-else class="grid grid-cols-3 gap-1">
+            <div v-else class="grid lg:grid-cols-3 grid-cols-2 gap-1">
                 <img v-for="image in listing.images" :key="image.id" :src="image.src" alt="" />
             </div>
         </Box>
@@ -56,6 +56,11 @@
                     </div>
                 </div>
             </Box>
+            <MakeOffer 
+                v-if="user"
+                :listing-id="listing.id" 
+                :price="listing.price"
+            />
         </div>
     </div>
 </template>
@@ -65,8 +70,10 @@ import ListingAddress from '@/Components/listingAddress.vue'
 import ListingSpace from '@/Components/ListingSpace.vue'
 import Price from '@/Components/Price.vue'
 import Box from '@/Components/UI/Box.vue'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useMonthlyPayment } from '@/Composables/useMonthlyPayment'
+import MakeOffer from '@/Pages/Listing/Show/Components/MakeOffer.vue'
+import { usePage } from '@inertiajs/inertia-vue3'
 
 const interestRate = ref(2.5)
 const duration = ref(25)
@@ -74,6 +81,12 @@ const duration = ref(25)
 const props = defineProps({
     listing : Object,
 })
+
+const page = usePage()
+
+const user = computed(
+    () => page.props.value.user,
+)
 
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(props.listing.price, interestRate, duration)
 
