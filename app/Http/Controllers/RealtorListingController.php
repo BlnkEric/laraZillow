@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreListingRequest;
 use App\Http\Requests\UpdateListingRequest;
+use Inertia\Inertia;
 
 class RealtorListingController extends Controller
 {
@@ -40,6 +41,7 @@ class RealtorListingController extends Controller
             // ->mostRecent()
             ->filter($filters)
             ->withCount('images')
+            ->withCount('offers')
             ->paginate(5)
             ->withQueryString()
             ]
@@ -89,7 +91,10 @@ class RealtorListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        //
+        return Inertia(
+            'Realtor/Show',
+            ['listing' => $listing->load('offers')]
+        );
     }
 
     /**
