@@ -59,9 +59,15 @@ class ListingController extends Controller
         // $this->authorize('view', $listing);
 
         $listing->load(['images']);
+        $offer = !Auth::user() 
+            ? null : 
+            $listing->offers()->byCurrentUser()->first();
+
         return inertia(
-            'Listing/Show',
-            ['listing' => $listing]
+            'Listing/Show', [
+                'listing' => $listing,
+                'offerMade' => $offer
+                ]
         );
     }
 
