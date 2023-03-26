@@ -31,8 +31,8 @@
         <div v-if="successFlash" class="mb-4 border rounded-md shadow-sm border-green-300 dark:border-green-600 bg-green-100 dark:bg-green-900 p-4">
             {{ successFlash }}
         </div>
+        <slot>Default</slot>
     </main>
-    <slot>Default</slot>
 </template>
 
 <script setup>
