@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\RealrotListingAcceptOfferController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
 
@@ -40,6 +41,8 @@ Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function (
     Route::put('listings/{listing}/restore', [RealtorListingController::class, 'restore'])
     ->name('listings.restore')
     ->withTrashed();
+
+    Route::put('offer/{offer}/accept', RealrotListingAcceptOfferController::class)->name('offer.accept');
 
     Route::resource('listings', RealtorListingController::class)
     // ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])

@@ -13,7 +13,7 @@ class Offer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'amount', 'acceoted_at', 'rejected_at'
+        'amount', 'accepted_at', 'rejected_at'
     ];
 
     public function listing(): BelongsTo {
@@ -26,5 +26,9 @@ class Offer extends Model
 
     public function scopeByCurrentUser(Builder $query): Builder {
         return $query->where('bidder_id', Auth::user()?->id);
+    }
+
+    public function scopeExcept(Builder $query, Offer $offer): Builder {
+        return $query->where('id', '!=', $offer->id);
     }
 }
