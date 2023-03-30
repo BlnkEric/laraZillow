@@ -3,7 +3,7 @@
     <section class="mx-5">
         <RealtorFilter :filters="filters" />
     </section>
-    <section class="grid grid-cols-1 lg:grid-cols-2 gap-2 mx-5">
+    <section v-if="listings.data.length" class="grid grid-cols-1 lg:grid-cols-2 gap-2 mx-5">
         <Box v-for="listing in listings.data" :key="listing.id" :class="{'border-4 border-dashed': listing.deleted_at}">
             <div class="flex flex-col md:flex-row gap-2 md:items-center justify-between">
                 <div :class="{'opacity-30': listing.deleted_at}">
@@ -40,6 +40,7 @@
             </div>
         </Box>
     </section>
+    <EmptyState v-else>No Listings Yet</EmptyState>
     <section>
         <div v-if="listings.data.length" class="w-full flex justify-center my-4">
             <Pagination :links="listings.links" />
@@ -53,6 +54,7 @@ import ListingAddress from '@/Components/listingAddress.vue'
 import ListingSpace from '@/Components/ListingSpace.vue'
 import Price from '@/Components/Price.vue'
 import Box from '@/Components/UI/Box.vue'
+import EmptyState from '@/Components/UI/EmptyState.vue'
 import Pagination from '@/Components/UI/Pagination.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 import RealtorFilter from './Index/Components/RealtorFilter.vue'

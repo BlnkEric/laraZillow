@@ -1,13 +1,13 @@
 <template>
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4  mx-5">
-        <Box class="md:col-span-7 flex items-center w-full">
-            <div v-if="!listing.images.length" class="w-full text-center font-medium text-gray-500">
-                No images Yet
-            </div>
-            <div v-else class="grid lg:grid-cols-3 grid-cols-2 gap-1">
+        <Box v-if="listing.images.length" class="md:col-span-7 flex items-center">
+            <div class="grid lg:grid-cols-3 grid-cols-2 gap-1">
                 <img v-for="image in listing.images" :key="image.id" :src="image.src" alt="" />
             </div>
         </Box>
+        <EmptyState v-else class="md:col-span-7 flex items-center">
+            No images Yet
+        </EmptyState>
         <div class="flex flex-col md:col-span-5 gap-4">
             <Box>
                 <template #header>
@@ -81,6 +81,7 @@ import { useMonthlyPayment } from '@/Composables/useMonthlyPayment'
 import MakeOffer from '@/Pages/Listing/Show/Components/MakeOffer.vue'
 import OfferMade from '@/Pages/Listing/Show/Components/OfferMade.vue'
 import { usePage } from '@inertiajs/inertia-vue3'
+import EmptyState from '@/Components/UI/EmptyState.vue'
 
 const interestRate = ref(2.5)
 const duration = ref(25)

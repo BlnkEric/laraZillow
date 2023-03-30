@@ -7,6 +7,12 @@
                 </div>
 
                 <div class="flex gap-3 items-end">
+                    <Link v-if="user" :href="route('notifications.index')" class="relative">
+                        <font-awesome-icon class="text-xl text-amber-300 px-4 py-1" icon="fa-bell" />
+                        <div v-if="notificationCount" class="absolute right-0 top-0 w-5 h-5 bg-red-700 dark:bg-red-500 font-medium border border-white dark:border-gray-900 rounded-full text-center text-xs">
+                            {{ notificationCount }}
+                        </div>
+                    </Link>
                     <Link class="btn-primary max-[768px]:text-sm max-[560px]:text-xs" rel="stylesheet" :href="route('listings.index')">Listings</Link>&nbsp;
                     <div v-if="user" class="flex gap-2 items-end">
                         <div class="btn-primary max-[768px]:text-sm max-[560px]:text-xs">
@@ -51,6 +57,10 @@ const successFlash = computed(
 )
 const user = computed(
     () => page.props.value.user,
+)
+
+const notificationCount = computed(
+    () => Math.min(page.props.value.user.notificationCount,9),
 )
 //timer
 // const timer = ref(0)
