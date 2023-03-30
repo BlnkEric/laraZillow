@@ -15,11 +15,16 @@ class RealrotListingAcceptOfferController extends Controller
      */
     public function __invoke(Offer $offer, Request $request)
     {
+        $listing = $offer->listing;
+        $this->authorize('update', $listing);
+
         // Accept selected Offer
         $offer->update(['accepted_at' => now()]);
+        $listing->sold_at = now();
+        $listing->save();
 
         // Reject All Other Offers
-        $offer->listing->offers()->except($offer)->update(['rejected_at' => now()]);
+        $listing->offers()->except($offer)->update(['rejected_at' => now()]);
 
         return redirect()->back()->with('success', "Offer #{$offer->id} accepted, other offers rejected !");
     }

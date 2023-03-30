@@ -34,7 +34,12 @@ class ListingController extends Controller
             'Listing/Index',
             [
                 'filters' => $filters,
-                'listings' => Listing::mostRecent()->filter($filters)->paginate(10)->withQueryString()
+                'listings' => Listing::mostRecent()
+                    ->filter($filters)
+                    // ->withoutSold()
+                    // ->sold()
+                    ->paginate(10)
+                    ->withQueryString()
             ]
         );
     }

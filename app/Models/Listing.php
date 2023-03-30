@@ -45,6 +45,31 @@ class Listing extends Model
     public function scopeMostRecent(Builder $query): Builder {
         return $query->orderByDesc('created_at');
     }
+
+    // listings that does not have offers at all or have offers but not sold yet
+    public function scopeWithoutSold(Builder $query): Builder {
+        // return $query->doesntHave('offers')
+        //     ->orWhereHas(
+        //         'offers', 
+        //         fn(Builder $query) 
+        //             => $query->whereNull('accepted_at')
+        //                         ->whereNull('rejected_at'));
+
+        return $query->WhereNull('sold_at');
+
+    }
+
+    public function scopeSold(Builder $query): Builder {
+        // just sold listings - accepted_at field is not null !! - not optimized
+        // return $query->WhereHas(
+        //         'offers', 
+        //         fn(Builder $query) => $query->whereNotNull('accepted_at'));
+
+        // just sold listings - accepted_at field is not null !! - best practice !!
+        return $query->WhereNotNull('sold_at');
+
+    }
+
     public function scopeFilter(Builder $query, Array $filters): Builder {
         return $query->when(
             $filters['priceFrom'] ?? false,

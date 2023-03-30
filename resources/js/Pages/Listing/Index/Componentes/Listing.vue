@@ -1,8 +1,10 @@
 <template>
     <Box>
         <div>
+            ## {{ listing.id }}
             <Link :href="route('listings.show', {listing: listing.id})">
-                <div class="flex items-center gap-2">
+                <div v-if="listing.sold_at != null" class="text-xs font-bold uppercase border border-dashed dark:border-green-700 dark:text-green-700 text-green-500 p-1 rounded-md inline-block">sold</div>
+                <div class="xl:flex items-center gap-2">
                     <Price :price="listing.price" class="font-bold text-2xl" />
                     <div class="text-xs text-gray-500">
                         <Price :price="monthlyPayment" />pm
