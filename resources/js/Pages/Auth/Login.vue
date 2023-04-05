@@ -1,4 +1,7 @@
 <template>
+    <div v-if="failedFlash" class="mb-4 border rounded-md shadow-sm border-red-300 dark:border-red-600 bg-green-100 dark:bg-red-900 p-4">
+        {{ failedFlash }}
+    </div>
     <div class="w-1/2 mx-auto">
         <form @submit.prevent="login">
             <div class="mt-2">
@@ -23,16 +26,17 @@
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div> -->
             </div>
-            <div class="mt-2">
+            <div class="flex items-center mt-2 gap-2">
                 <button
                     type="submit" 
                     class="btn-primary w-full" 
-                    :class="{'bg-slate-500 cursor-not-allowed hover:bg-gray-500': isSignupButtonDisabled}" 
-                    :disabled="isSignupButtonDisabled" 
+                    :class="{'bg-slate-500 cursor-not-allowed hover:bg-gray-500': isSignupButtonDisabled || tooManyRequest}" 
+                    :disabled="isSignupButtonDisabled || tooManyRequest" 
                     @click="displayFontAwesome.display='block'"
                 >
                     Login
                 </button>
+                <div v-if="!resetTimer && tooManyRequest" class="bg-red-500 p-2 text-center rounded-md text-red-900">{{ timer }}</div>
             </div>
             <div class="mt-2 text-center text-gray-500">
                 <Link :href="route('user-account.create')">Need an account? cleck here</Link>
@@ -43,10 +47,20 @@
 
 <script setup>
 import { useValidationPass } from '@/Composables/useValidationPass'
-import { useForm, Link } from '@inertiajs/inertia-vue3'
+import { useForm, usePage, Link } from '@inertiajs/inertia-vue3'
 import { debounce } from 'lodash'
-import { computed, reactive , watch } from 'vue'
+import { computed, reactive , watch, ref } from 'vue'
 import { useSubmitButtonState } from '@/Composables/useSubmitButtonState'
+
+// const props = defineProps({
+//     flashMessages: Object,
+// })
+
+const page = usePage()
+
+const failedFlash = computed(
+    () => page.props.value.flash.alert,
+)
 
 const form = useForm({
     email : null,
@@ -60,42 +74,36 @@ const displayFontAwesome = reactive({
 const { validationPass } = useValidationPass(form)
 
 watch(() => form.hasErrors, debounce(() => {
-
     displayFontAwesome.display = 'none'
 }
 , 1000),
 )
 
-const { isSignupButtonDisabled } = useSubmitButtonState(form)
+const { tooManyRequest, isSignupButtonDisabled } = useSubmitButtonState(failedFlash, form)
+
+const timer = ref(59)
+let intervalId = -1
+
+const resetTimer = computed(
+    () => 
+    {
+
+        if (timer.value == 0) {
+            clearInterval(intervalId)
+            return true
+        }
+        return false
+    },
+)
 
 
 const login = () => form.post(route('login.store'))
 </script>
 
-<script>
-export default {
-    // data() {
-    //     return {
-    //         display: 'none',
-    //     }
-    // },
-
-    // methods: {
-    //     triggerValidInputs() {
-    //         this.display = 'block'
-    //     },
-    // },
-}
-</script>
-
 <style scoped>  
 .afterValidate {
-  /* padding: 2px; */
-  /* margin: 10px 0 10px 0; */
-  /* display:  "(v-bind(display)!= null) ? v-bind(display) : 'none'"; */
   display: v-bind(display);
 }
-
 .validated {
     color: green;
 }

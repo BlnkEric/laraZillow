@@ -27,7 +27,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Route::model('user', User::class);
+        // Route::model('user', User::class);
 
         $this->configureRateLimiting();
 
@@ -65,7 +65,7 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('login', function (Request $request) {
 
-            return Limit::perMinute(5)->by($request->input('password'))->response(function (Request $request, array $headers) {
+            return Limit::perMinute(1)->by($request->input('password'))->response(function (Request $request, array $headers) {
                 return redirect()->back()->with('alert','INCORRECT CREDENTIALS, CLICK IF YOU NEED TO RESET YOUR PASSWORD !! ...');
                 // return response('Custom response INCORRECT PASSWORD !! ...', 429, $headers);
             });

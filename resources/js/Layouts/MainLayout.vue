@@ -37,9 +37,6 @@
         <div v-if="successFlash" class="mb-4 border rounded-md shadow-sm border-green-300 dark:border-green-600 bg-green-100 dark:bg-green-900 p-4">
             {{ successFlash }}
         </div>
-        <div v-if="failedFlash" class="mb-4 border rounded-md shadow-sm border-red-300 dark:border-red-600 bg-green-100 dark:bg-red-900 p-4">
-            {{ failedFlash }}
-        </div>
         <slot>Default</slot>
     </main>
 </template>
@@ -58,9 +55,7 @@ const page = usePage()
 const successFlash = computed(
     () => page.props.value.flash.success,
 )
-const failedFlash = computed(
-    () => page.props.value.flash.alert,
-)
+
 const user = computed(
     () => page.props.value.user,
 )
