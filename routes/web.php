@@ -43,7 +43,10 @@ use App\Http\Controllers\RealrotListingAcceptOfferController;
 //     return "hello";
 // })->whereNumber('id')->whereAlphaNumeric('name');
 
-
+// getting user instance explicitly - 
+Route::get('/user/{user}/wow', function(User $allss) {
+    return $allss;
+});
 
 
 // -------------------------------------------------------------]
