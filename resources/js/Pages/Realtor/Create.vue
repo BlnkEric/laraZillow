@@ -7,7 +7,7 @@
                 <div v-if="form.errors.beds" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.beds }}</span>
                 </div>                
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -18,7 +18,7 @@
                 <div v-if="form.errors.baths" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.baths }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div v-if="form.errors.area" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.area }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                     <!-- <font-awesome-icon icon="fa-hat-wizard" /> -->
                     <!-- <font-awesome-icon icon="fa-solid fa-camera" /> -->
@@ -43,7 +43,7 @@
                 <div v-if="form.errors.city" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.city }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -54,7 +54,7 @@
                 <div v-if="form.errors.code" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.code }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -65,7 +65,7 @@
                 <div v-if="form.errors.street" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.street }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 <div v-if="form.errors.street_nr" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.street_nr }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
@@ -87,14 +87,19 @@
                 <div v-if="form.errors.price" class="mt-2 errorContainer">
                     <span class="spanError">{{ form.errors.price }}</span>
                 </div>
-                <div v-else class="afterValidate mt-2">
+                <div v-else-if="displayFontAwesome.display == 'block'" :class="{'aftervalidate mt-2': displayFontAwesome.display == 'block'}" class="afterValidate mt-2">
                     <!-- <font-awesome-icon class="validated" :icon="dynamicIcon" /> -->
                     <font-awesome-icon class="validated" :icon="validationPass" />
                 </div>
             </div>
 
             <div class="col-span-6">
-                <button type="submit" class="btn-primary" @click="triggerValidInputs">Create</button>
+                <button
+                    type="submit" class="btn-primary" 
+                    @click="displayFontAwesome.display='block'"
+                >
+                    Create
+                </button>
             </div>
         </div>
     </form>
@@ -104,6 +109,8 @@
 import { useForm } from '@inertiajs/inertia-vue3'
 // import { computed } from 'vue'
 import { useValidationPass } from '@/Composables/useValidationPass'
+import { computed, reactive , watch } from 'vue'
+import { debounce } from 'lodash'
 
 const form = useForm({
     baths : 0,
@@ -125,6 +132,19 @@ const form = useForm({
 //     }
 // })
 
+const displayFontAwesome = reactive({
+    display: 'none', 
+})
+
+
+watch(() => form.hasErrors, debounce(() => {
+    if(validationPass == 'fa-solid fa-spinner'){
+        displayFontAwesome.display = 'none'
+    }
+}
+, 1000),
+)
+
 const { validationPass } = useValidationPass(form)
 
 // eslint-disable-next-line no-undef
@@ -133,17 +153,17 @@ const create = () => form.post(route('realtor.listings.store'))
 
 <script>
 export default {
-    data() {
-        return {
-            display: 'none',
-        }
-    },
+    // data() {
+    //     return {
+    //         display: 'none',
+    //     }
+    // },
 
-    methods: {
-        triggerValidInputs() {
-            this.display = 'block'
-        },
-    },
+    // methods: {
+    //     triggerValidInputs() {
+    //         this.display = 'block'
+    //     },
+    // },
 }
 </script>
 
@@ -154,13 +174,6 @@ export default {
   /* display:  "(v-bind(display)!= null) ? v-bind(display) : 'none'"; */
   display: v-bind(display);
 }
-
-/* span {
-    background-color: rgb(235, 91, 91);
-    color: aliceblue;
-    border-radius: 10px;
-    padding: 2px;
-} */
 
 .validated {
     color: green;

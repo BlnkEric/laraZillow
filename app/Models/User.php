@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -55,7 +56,6 @@ class User extends Authenticatable
         );
     }
 
-    
     public function listings(): HasMany {
         return $this->hasMany(Listing::class, 'by_user_id');
     }
@@ -63,5 +63,4 @@ class User extends Authenticatable
     public function offers(): HasMany {
         return $this->hasMany(Offer::class, 'bidder_id');
     }
-
 }

@@ -2,11 +2,12 @@
 
 namespace App\Providers;
 
-use Illuminate\Cache\RateLimiting\Limit;
-use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -46,7 +47,26 @@ class RouteServiceProvider extends ServiceProvider
     protected function configureRateLimiting()
     {
         RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+            return Limit::perMinute(2)->by($request->user()?->id ?: $request->ip());
         });
+
+        // RateLimiter::for('login', function (Request $request) {
+        //     return [
+        //         Limit::perMinute(2)->response(function (Request $request, array $headers) {
+        //             return response('Custom response NORMAL !! ...', 429, $headers);
+        //         }),
+        //         Limit::perMinute(3)->by($request->input('password'))->response(function (Request $request, array $headers) {
+        //             return response('Custom response INCORRECT PASSWORD !! ...', 429, $headers);
+        //         }),
+        //     ];
+        // });
+
+        RateLimiter::for('login', function (Request $request) {
+
+            return Limit::perMinute(5)->by($request->input('password'))->response(function (Request $request, array $headers) {
+                return redirect()->back()->with('alert','INCORRECT CREDENTIALS, CLICK IF YOU NEED TO RESET YOUR PASSWORD !! ...');
+                // return response('Custom response INCORRECT PASSWORD !! ...', 429, $headers);
+            });
+    });
     }
 }
