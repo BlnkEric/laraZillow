@@ -1,3 +1,19 @@
+<h1> # Real Estate Management Application using Laravel and Vue with Inertia.js </h1>
+
+<h3> Description </h3>
+
+<p>This application is a real estate management system built with Laravel and Vue.js using the Inertia.js framework. It allows users to manage properties, search for properties based on various criteria, and handle user management. The application provides a user-friendly interface for real estate agents or property managers to efficiently manage their property listings.</p>
+
+<h3>Installation</h3>
+<p>
+    
+1. Clone the repository: `git clone <repository-url>`
+2. Install dependencies: `composer install && npm install`
+3. Configure the environment variables: Copy the `.env.example` file to `.env` and update the necessary configurations, such as the database credentials.
+4. Run database migrations: `php artisan migrate`
+5. Start the development server: `npm run dev` or `php artisan serve`
+
+</p>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
